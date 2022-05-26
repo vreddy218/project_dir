@@ -1,0 +1,21 @@
+db.zipcodes.find({city:"ATLANTA",state:"GA"})
+db.zipcodes.aggregate([{$match:{$and:[{city:"ATLANTA"},{state:"GA"}]}}])
+db.zipcodes.aggregate([{$match:{city:"ATLANTA"}},{$count:"pop"}])
+By state
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.zipcodes.aggregate([{$match:{state:"GA"}},{$count:"pop"}])
+db.zipcodes.find().sort({pop:-1})
+db.zipcodes.aggregate([{$group:{id:"$state"}},{$sort:{pop-1}},{$limit:3}}])
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+By city
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+By city:
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.zipcodes.find().sort({pop:-1})
+db.zipcodes.aggregate([{$group:{_id:"$city"}},{$sort:{pop:-1}},{$limit:3}])
+Bonus
+ReferenceError: Bonus is not defined
+Bonus:
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.zipcodes.aggregate([{$group:{_id:{state:"$state",city:"$city"},pop:{$sum:"$pop"}}},{$group:{_id:"$_id.state",avgcitypop:{$avg:"$pop"}}}])
+db.zipcodes.aggregate([{$group:{_id:"$state"}},{$sort:{pop:-1}},{$limit:3}])
